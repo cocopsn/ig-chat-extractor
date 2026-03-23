@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head><title>Generate Icons</title></head>
+<body>
+<p>Right-click each image below and "Save image as..." into the <code>icons/</code> folder.</p>
+<div id="output" style="display:flex; gap:20px; padding:20px; background:#222;"></div>
+<script>
+function createIcon(size) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  // Background - Instagram gradient
+  const grad = ctx.createLinearGradient(0, 0, size, size);
+  grad.addColorStop(0, '#833ab4');
+  grad.addColorStop(0.5, '#fd1d1d');
+  grad.addColorStop(1, '#fcb045');
+
+  // Rounded rect
+  const r = size * 0.18;
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.lineTo(size - r, 0);
+  ctx.quadraticCurveTo(size, 0, size, r);
+  ctx.lineTo(size, size - r);
+  ctx.quadraticCurveTo(size, size, size - r, size);
+  ctx.lineTo(r, size);
+  ctx.quadraticCurveTo(0, size, 0, size - r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Chat bubble icon
+  ctx.fillStyle = 'white';
+  const cx = size / 2;
+  const cy = size * 0.42;
+  const bw = size * 0.5;
+  const bh = size * 0.35;
+  const br = size * 0.08;
+
+  // Main bubble
+  ctx.beginPath();
+  ctx.moveTo(cx - bw/2 + br, cy - bh/2);
+  ctx.lineTo(cx + bw/2 - br, cy - bh/2);
+  ctx.quadraticCurveTo(cx + bw/2, cy - bh/2, cx + bw/2, cy - bh/2 + br);
+  ctx.lineTo(cx + bw/2, cy + bh/2 - br);
+  ctx.quadraticCurveTo(cx + bw/2, cy + bh/2, cx + bw/2 - br, cy + bh/2);
+  ctx.lineTo(cx - bw*0.1, cy + bh/2);
+  ctx.lineTo(cx - bw*0.25, cy + bh/2 + size*0.12);
+  ctx.lineTo(cx - bw*0.15, cy + bh/2);
+  ctx.lineTo(cx - bw/2 + br, cy + bh/2);
+  ctx.quadraticCurveTo(cx - bw/2, cy + bh/2, cx - bw/2, cy + bh/2 - br);
+  ctx.lineTo(cx - bw/2, cy - bh/2 + br);
+  ctx.quadraticCurveTo(cx - bw/2, cy - bh/2, cx - bw/2 + br, cy - bh/2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Text lines inside bubble
+  ctx.fillStyle = '#833ab4';
+  const lineY = cy - bh*0.15;
+  const lineH = size * 0.03;
+  ctx.fillRect(cx - bw*0.3, lineY, bw*0.6, lineH);
+  ctx.fillRect(cx - bw*0.3, lineY + lineH*2.5, bw*0.4, lineH);
+
+  return canvas;
+}
+
+const sizes = [16, 48, 128];
+const div = document.getElementById('output');
+
+sizes.forEach(size => {
+  const canvas = createIcon(size);
+  const wrapper = document.createElement('div');
+  wrapper.style.textAlign = 'center';
+
+  const img = document.createElement('img');
+  img.src = canvas.toDataURL('image/png');
+  img.style.border = '1px solid #555';
+  img.style.imageRendering = 'pixelated';
+  img.title = `icon${size}.png - Right click > Save As`;
+
+  const label = document.createElement('p');
+  label.textContent = `icon${size}.png`;
+  label.style.color = '#eee';
+  label.style.fontSize = '12px';
+  label.style.marginTop = '6px';
+
+  // Also provide download link
+  const link = document.createElement('a');
+  link.href = canvas.toDataURL('image/png');
+  link.download = `icon${size}.png`;
+  link.textContent = 'Download';
+  link.style.color = '#60a5fa';
+  link.style.fontSize = '12px';
+  link.style.display = 'block';
+  link.style.marginTop = '4px';
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(label);
+  wrapper.appendChild(link);
+  div.appendChild(wrapper);
+});
+</script>
+</body>
+</html>

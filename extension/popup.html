@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-icon">💬</div>
+      <div class="header-text">
+        <h1>IG Chat Extractor</h1>
+        <p>Exporta tus conversaciones fácilmente</p>
+      </div>
+    </header>
+
+    <!-- Status Bar -->
+    <div id="status-bar" class="status-bar status-idle">
+      <span id="status-icon">💡</span>
+      <span id="status-text">Abre un chat de Instagram y presiona Extraer</span>
+    </div>
+
+    <!-- Screen: Setup (shown first) -->
+    <div id="screen-setup" class="screen active">
+
+      <!-- Names -->
+      <section class="card">
+        <div class="card-header">
+          <span class="card-icon">👤</span>
+          <span>Nombres</span>
+        </div>
+        <div class="names-row">
+          <div class="input-group">
+            <label for="my-name">Tú</label>
+            <div class="input-with-icon">
+              <span class="input-icon">🔵</span>
+              <input type="text" id="my-name" value="Yo" placeholder="Tu nombre" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="their-name">Ella/Él</label>
+            <div class="input-with-icon">
+              <span class="input-icon">🟣</span>
+              <input type="text" id="their-name" value="" placeholder="Su nombre" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Options -->
+      <section class="card">
+        <div class="card-header">
+          <span class="card-icon">⚙️</span>
+          <span>Opciones</span>
+        </div>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="checkbox" id="opt-timestamps" checked />
+            <span class="checkbox-visual"></span>
+            <span class="option-label">
+              <span>Mostrar fechas y horas</span>
+              <span class="option-desc">Incluye separadores de tiempo</span>
+            </span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" id="opt-media" checked />
+            <span class="checkbox-visual"></span>
+            <span class="option-label">
+              <span>Indicar multimedia</span>
+              <span class="option-desc">Marca fotos, videos, audios</span>
+            </span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" id="opt-replies" checked />
+            <span class="checkbox-visual"></span>
+            <span class="option-label">
+              <span>Mostrar respuestas</span>
+              <span class="option-desc">Indica a qué mensaje se responde</span>
+            </span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" id="opt-stats" checked />
+            <span class="checkbox-visual"></span>
+            <span class="option-label">
+              <span>Estadísticas al final</span>
+              <span class="option-desc">Conteo de mensajes por persona</span>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Scroll Mode -->
+      <section class="card">
+        <div class="card-header">
+          <span class="card-icon">📜</span>
+          <span>Rango de lectura</span>
+        </div>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="radio" name="scroll-mode" value="auto-down" checked />
+            <span class="radio-visual"></span>
+            <span class="option-label">
+              <span>Desde aquí hasta abajo</span>
+              <span class="option-desc">Scrollea tu chat al punto de inicio y la extensión lee hacia abajo</span>
+            </span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="scroll-mode" value="auto-up" />
+            <span class="radio-visual"></span>
+            <span class="option-label">
+              <span>Desde aquí hacia arriba</span>
+              <span class="option-desc">Lee hacia arriba desde tu posición actual</span>
+            </span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="scroll-mode" value="full" />
+            <span class="radio-visual"></span>
+            <span class="option-label">
+              <span>Todo el chat cargado</span>
+              <span class="option-desc">Lee todo de inicio a fin (puede tomar un rato)</span>
+            </span>
+          </label>
+        </div>
+        <div class="speed-row">
+          <label for="scroll-speed">Velocidad:</label>
+          <select id="scroll-speed">
+            <option value="fast">Rápida</option>
+            <option value="normal" selected>Normal</option>
+            <option value="slow">Lenta (más precisa)</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Extract Button -->
+      <button id="btn-extract" class="btn btn-primary btn-large">
+        <span class="btn-icon">📋</span>
+        <span class="btn-text">Extraer Conversación</span>
+      </button>
+      <button id="btn-stop" class="btn btn-outline btn-large" style="display:none;">
+        <span>⏹️</span> Detener extracción
+      </button>
+    </div>
+
+    <!-- Screen: Results -->
+    <div id="screen-results" class="screen">
+
+      <!-- Stats Cards -->
+      <div id="stats-row" class="stats-row">
+        <div class="stat-card">
+          <span class="stat-number" id="stat-total">0</span>
+          <span class="stat-label">Mensajes</span>
+        </div>
+        <div class="stat-card stat-me">
+          <span class="stat-number" id="stat-me">0</span>
+          <span class="stat-label" id="stat-me-label">Tú</span>
+        </div>
+        <div class="stat-card stat-them">
+          <span class="stat-number" id="stat-them">0</span>
+          <span class="stat-label" id="stat-them-label">Ella</span>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <section class="card preview-card">
+        <div class="card-header">
+          <span class="card-icon">👁️</span>
+          <span>Vista previa</span>
+          <button id="btn-toggle-preview" class="btn-mini">Expandir</button>
+        </div>
+        <div id="preview-container" class="preview-container">
+          <div id="preview-content" class="preview-content"></div>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <div class="actions-grid">
+        <button id="btn-copy" class="btn btn-action">
+          <span class="action-icon">📋</span>
+          <span class="action-label">Copiar texto</span>
+        </button>
+        <button id="btn-download" class="btn btn-action">
+          <span class="action-icon">💾</span>
+          <span class="action-label">Descargar .txt</span>
+        </button>
+        <button id="btn-copy-html" class="btn btn-action">
+          <span class="action-icon">🎨</span>
+          <span class="action-label">Copiar bonito</span>
+        </button>
+        <button id="btn-back" class="btn btn-action btn-action-secondary">
+          <span class="action-icon">🔄</span>
+          <span class="action-label">Extraer de nuevo</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Screen: Loading -->
+    <div id="screen-loading" class="screen">
+      <div class="loading-animation">
+        <div class="spinner"></div>
+        <p class="loading-text">Extrayendo mensajes...</p>
+        <p class="loading-sub" id="loading-detail">Analizando el chat</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p class="loading-count" id="loading-count">0 mensajes recolectados</p>
+      </div>
+    </div>
+
+    <!-- Hidden textarea for raw text -->
+    <textarea id="raw-output" style="display:none;"></textarea>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

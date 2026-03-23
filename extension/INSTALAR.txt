@@ -1,0 +1,58 @@
+================================================
+  IG Chat Extractor - Instalación en Chrome
+================================================
+
+PASO 1: Abrir Chrome Extensions
+  - Abre Chrome
+  - En la barra de direcciones escribe: chrome://extensions
+  - Presiona Enter
+
+PASO 2: Activar modo desarrollador
+  - En la esquina SUPERIOR DERECHA busca "Developer mode"
+    (o "Modo de desarrollador")
+  - Activa el switch/toggle
+
+PASO 3: Cargar la extensión
+  - Click en "Load unpacked" (o "Cargar descomprimida")
+  - Navega hasta esta carpeta:
+    C:\Users\arma2\Codigo\ig-chat-extractor\extension
+  - Click en "Seleccionar carpeta"
+
+PASO 4: Fijar la extensión (opcional pero recomendado)
+  - Click en el icono de puzzle/rompecabezas en la barra
+    de Chrome (arriba a la derecha)
+  - Busca "IG Chat Extractor"
+  - Click en el pin/chincheta para fijarlo
+
+¡LISTO! Ya puedes usarlo.
+
+================================================
+  CÓMO USAR
+================================================
+
+1. Ve a instagram.com
+2. Abre la conversación que quieres exportar
+3. IMPORTANTE: Scrollea hacia arriba para cargar
+   todos los mensajes que quieras incluir
+4. Click en el icono de la extensión (💬)
+5. Escribe tu nombre y el de la otra persona
+6. Click "Extraer Conversación"
+7. Usa los botones para:
+   📋 Copiar texto  → Pega en cualquier lado
+   💾 Descargar     → Guarda como archivo .txt
+   🎨 Copiar bonito → Pega en Word/Notes con colores
+
+================================================
+  TROUBLESHOOTING
+================================================
+
+- "No se encontró el chat":
+  Asegúrate de tener un DM abierto, no el feed.
+
+- Pocos mensajes:
+  Instagram solo carga los visibles. Scrollea arriba
+  para cargar más antes de extraer.
+
+- Nombres incorrectos (Yo/Ella invertidos):
+  Instagram cambia su DOM frecuentemente. Si detecta
+  mal quién es quién, avísame y lo ajusto.

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "IG Chat Extractor",
+  "version": "1.0.0",
+  "description": "Extrae conversaciones de Instagram Web en texto formateado para lectura fácil",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://www.instagram.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

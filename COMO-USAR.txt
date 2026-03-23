@@ -1,0 +1,55 @@
+============================================
+  IG Chat Extractor - Instrucciones de uso
+============================================
+
+PROPÓSITO:
+  Extraer conversaciones de Instagram Web en texto formateado
+  para leer fácilmente sin tener que arrastrar el mouse.
+
+PASOS:
+  1. Abre Instagram Web (instagram.com) en Chrome
+  2. Ve a los mensajes directos (DMs)
+  3. Abre la conversación que quieres extraer
+  4. IMPORTANTE: Scrollea hacia arriba para cargar los mensajes
+     que quieras incluir (Instagram solo carga los visibles)
+  5. Presiona F12 para abrir DevTools
+  6. Ve a la pestaña "Console"
+  7. Copia TODO el contenido del archivo "extract-ig-chat-v2.js"
+  8. Pégalo en la consola y presiona Enter
+  9. Aparecerá un panel flotante en la esquina superior derecha
+
+USAR EL PANEL:
+  - Escribe tu nombre y el de la otra persona
+  - Marca/desmarca "Mostrar fechas/horas" según prefieras
+  - Click "Scroll arriba primero" si quieres más mensajes
+  - Click "Extraer Chat" para procesar
+  - Click "Copiar" para copiar al portapapeles
+  - Click "Descargar .txt" para guardar como archivo
+
+NOTAS:
+  - Instagram carga mensajes dinámicamente. Solo se extraen
+    los que están visibles/cargados en el DOM.
+  - Para más mensajes: scrollea arriba, espera a que carguen,
+    y luego extrae.
+  - El panel se puede arrastrar con el mouse.
+  - Si algo no funciona, prueba la v1 (extract-ig-chat.js).
+
+EJEMPLO DE SALIDA:
+  ╔══════════════════════════════════════════════════════╗
+  ║  💬 Conversación de Instagram                        ║
+  ║  📅 22 de marzo de 2026                              ║
+  ║  👤 Armando ↔ María                                  ║
+  ╚══════════════════════════════════════════════════════╝
+
+    ─── Hoy ───
+
+  🔵 Armando:
+     Hola mi amor, como estás?
+
+  🟣 María:
+     Holaaa bien y tú?
+     Te extraño mucho
+
+  🔵 Armando:
+     ↩️ En respuesta a: "Te extraño mucho"
+     Yo también te extraño
